@@ -1,0 +1,85 @@
+/* Container for the map */
+.map-container {
+  width: 100vw;
+  height: 100vh;
+  background: #000; /* Black background for contrast */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Wrapper to center and scale the SVG */
+.svg-wrapper {
+  width: 80vw;
+  height: 80vh;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG itself */
+.svg-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Text overlay (optional) */
+.independence-text {
+  position: absolute;
+  right: 10%;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: right;
+  animation: fadeIn 2s ease forwards;
+  z-index: 2;
+}
+
+/* Path animation and glow */
+.svg-map .map-paths path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 3s ease forwards, pulseGlow 2s infinite ease-in-out;
+  stroke-width: 4;
+  fill: none;
+  stroke: url(#tricolor-stroke);
+  filter: drop-shadow(0 0 6px #FF9933)
+          drop-shadow(0 0 6px #FFFFFF)
+          drop-shadow(0 0 6px #138808);
+}
+
+/* Draw animation */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Pulsing glow animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px #FF9933)
+            drop-shadow(0 0 6px #FFFFFF)
+            drop-shadow(0 0 6px #138808);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px #FF9933)
+            drop-shadow(0 0 12px #FFFFFF)
+            drop-shadow(0 0 12px #138808);
+  }
+}
+
+/* Optional fade-in for text */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
